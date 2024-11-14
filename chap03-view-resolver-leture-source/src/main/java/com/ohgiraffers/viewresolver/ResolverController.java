@@ -64,6 +64,19 @@ public class ResolverController {
         public ModelAndView modelAndViewReturn(ModelAndView mv){
             mv.addObject("forwardMessage",
                             "ModelAndView 를 이용해서 반환");
+            mv.setViewName("result");
+
+            return mv;
+        }
+
+        @GetMapping("modelandview-redirect-attr")
+    public ModelAndView mvRedirectAttr(ModelAndView mv, RedirectAttributes attr) {
+
+            attr.addFlashAttribute("flashMessage2",
+                    "ModelAndView 리다이렉트 시 값유지!!!");
+            mv.setViewName("redirect:/");
+
+            return mv;
 
         }
 
