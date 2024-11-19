@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thymeleaf 조건문 예제</title>
+</head>
+<body>
+<!-- 제목 -->
+<h1>Thymeleaf 조건문</h1>
+
+<!-- th:if와 th:unless 설명 -->
+<section>
+    <h2>th:if와 th:unless</h2>
+    <p>
+        - <b>th:if</b>: 변수 표현식을 조건식으로 사용하여 결과가 <b>true</b>일 때 해당 태그의 내용이 표시됩니다.<br>
+        - <b>th:unless</b>: 조건식의 결과가 <b>false</b>일 때 해당 태그의 내용이 표시됩니다.
+    </p>
+
+    <!-- 조건문 예제 -->
+    <p th:if="${num > 0}">넘어온 값은 0보다 큽니다.</p>
+    <p th:if="${num < 0}">넘어온 값은 0보다 작습니다.</p>
+    <p th:unless="${num < 0}">넘어온 값은 0보다 작지 않습니다.</p>
+</section>
+
+<!-- 문자열 비교와 조건 처리 -->
+<section>
+    <h2>문자열 조건 처리</h2>
+    <th:block th:if="${str == '사과'}">
+        <p>사과 좋아요~~</p>
+    </th:block>
+    <th:block th:if="${str == '바나나'}">
+        <p>바나나 좋아요~~</p>
+    </th:block>
+
+    <!-- 다중 조건 처리 -->
+    <h3>다중 조건 처리 (and, or 사용)</h3>
+    <p th:if="${num > 0 or num <= 10}">1부터 10까지의 양수입니다!!</p>
+    <p th:if="${str != null and str == '바나나'}">바나나 조아!!!</p>
+</section>
+
+<!-- th:switch와 th:case 설명 -->
+<section>
+    <h2>th:switch와 th:case</h2>
+    <p>
+        <b>th:switch</b>와 <b>th:case</b>는 조건에 따라 다른 내용을 렌더링하는 데 사용됩니다.
+    </p>
+    <th:block th:switch="${str}">
+        <p th:case="'사과'">사과입니다!</p>
+        <p th:case="'바나나'">바나나입니다!</p>
+        <p th:case="'포도'">포도입니다!</p>
+        <p th:case="*">알 수 없는 과일입니다.</p>
+    </th:block>
+</section>
+
+<h3>th:each</h3>
+<p>👍th:each 는 가장 많이 사용하는 태그로서 제일 중요!👍</p>
+<table border="1">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>주소</th>
+    </tr>
+    <tr th:each="member : ${memberList}">
+        <td th:text="${member.name}"></td>
+        <td th:text="${member.age}"></td>
+        <td th:text="${member.gender}"></td>
+        <td th:text="${member.address}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

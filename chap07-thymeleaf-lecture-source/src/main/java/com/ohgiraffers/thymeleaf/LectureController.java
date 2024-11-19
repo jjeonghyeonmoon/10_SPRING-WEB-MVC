@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Controller
 @RequestMapping("/lecture/*")
 public class LectureController {
@@ -19,6 +24,25 @@ public class LectureController {
 
         mv.setViewName("lecture/expression");
 
+
+        return mv;
+    }
+
+    @GetMapping("conditional")
+    public ModelAndView conditional(ModelAndView mv){
+
+        mv.addObject("num",1);
+        mv.addObject("str","바나나");
+
+        List<MemberDTO> memberList = new ArrayList<>();
+        memberList.add(new MemberDTO("하츄핑",4,'여',"서울시 노진구"));
+        memberList.add(new MemberDTO("시진핑",76,'남',"베이징 사천구"));
+        memberList.add(new MemberDTO("티니핑",8,'남',"서울시 광진구"));
+        memberList.add(new MemberDTO("핑구",4,'남',"서울시 핑구"));
+
+        mv.addObject("memberList",memberList);
+
+        mv.setViewName("lecture/conditional");
 
         return mv;
     }
