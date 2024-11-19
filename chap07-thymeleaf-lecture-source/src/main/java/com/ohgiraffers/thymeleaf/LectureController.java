@@ -15,7 +15,10 @@ public class LectureController {
 
         mv.addObject("member",new MemberDTO("조평훈",20,'남',"경기도수원시"));
 
+        mv.addObject("hello","hi~<h2>타임리프</h2>");
+
         mv.setViewName("lecture/expression");
+
 
         return mv;
     }
