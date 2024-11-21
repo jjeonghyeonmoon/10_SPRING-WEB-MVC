@@ -2,6 +2,7 @@ package com.ohgiraffers.crud.menu.model.service;
 
 
 import com.ohgiraffers.crud.menu.model.dao.MenuMapper;
+import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,10 @@ public class MenuService {
     }
 
     public List<MenuDTO> findAllMenu() {
-
         return menuMapper.findAllMenus();
+    }
 
+    public List<CategoryDTO> findAllCategory() {
+        return menuMapper.findAllCategory();
     }
 }

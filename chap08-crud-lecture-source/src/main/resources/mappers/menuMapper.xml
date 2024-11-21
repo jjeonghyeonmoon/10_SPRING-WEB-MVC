@@ -10,8 +10,12 @@
         <result property="price" column="menu_price"/>
         <result property="categoryCode" column="category_code"/>
         <result property="orderableStatus" column="orderable_status"/>
+    </resultMap>
 
-
+    <resultMap id="CategoryResultMap" type="com.ohgiraffers.crud.menu.model.dto.CategoryDTO">
+        <id property="code" column="category_code"/>
+        <result property="name" column="category_name"/>
+        <result property="refCategoryCode" column="ref_category_code"/>
     </resultMap>
 
     <select id="findAllMenus"  resultMap="menuResultMap">
@@ -27,6 +31,13 @@
             ORDERABLE_STATUS = 'Y'
         ORDER BY
             MENU_CODE
+    </select>
+
+    <select id="findAllCategory" resultMap="CategoryResultMap">
+        SELECT
+            *
+        FROM
+            tbl_category
     </select>
 
 </mapper>

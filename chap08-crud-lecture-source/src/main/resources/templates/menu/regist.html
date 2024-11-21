@@ -25,7 +25,30 @@
             *   화면에 뿌려줌
             * */
             /* comment. fetch 란 강제로 잡아채다 라는 뜻을 가짐*/
+            /* comment.
+                    fetch 는 regist.html 페이지가 요청되는 순간 동작을 한다.
+                    즉, 우리가 물리적인 버튼을 누르거나, 페이지 이동 등의 작업을
+                    하지 않더라도 요청을 보낸다는 의미이다.
+                    /menu/category 요청이 끝나면 돌아오는 값은
+                    json 형식의 문자열 데이터이다. ex) {code: 3, name : 한식}
+                    따라서 자바스크립트 객체로서 쓰기 위해서는 문자열 데이터를
+                    객체 형태로 변환을 해주어야 한다.
+            */
+
             fetch("/menu/category")
+                // json 형식의 문자열 값을 자바스크립트 객체 형식으로 변환
+                .then(res => res.json())     // 이 구문에서 자바스크립트 사용할 수 있게 변환 완료
+                .then(data => {              // 변환 된 데이터가 data 변수에 담김
+                    //select 태그 가져옴.
+                    const $categoryCode = document.getElementById("categoryCode");
+                    // for in 반복문 변수에 data 에 있는 프로퍼티 키 대입
+                    for(let index in data){
+                        const $option = document.createElement("option");
+                        $option.value = data[index].code;
+                        $option.textContent = data[index].name;
+                        $categoryCode.appendChild($option);
+                    }
+                })
         </script>
 </body>
 </html>
