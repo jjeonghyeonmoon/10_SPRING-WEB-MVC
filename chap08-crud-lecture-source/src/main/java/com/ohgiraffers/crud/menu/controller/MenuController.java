@@ -2,7 +2,6 @@ package com.ohgiraffers.crud.menu.controller;
 
 import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
-import com.ohgiraffers.crud.menu.model.dto.OneCategoryCodeDTO;
 import com.ohgiraffers.crud.menu.model.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -78,17 +77,19 @@ public class MenuController {
         return "redirect:/menu/list";
     }
 
-//    @GetMapping("menuCodeList")
-//    public void test(Model model){
-//
-//    }
+    // 이놈이 카테고리 코드 입력하는 페이지로 이동
+    @GetMapping("menuListCode")
+    public String showCategoryCode(){
+        return "menuCodeList";
+    }
 
 
-    @GetMapping("")
-    public String findOneCategoryCode(@RequestParam("category") int categoryCode){
+    @GetMapping("menuListCode")
+    public String findOneCategoryCode(int categoryCode, Model model){
 
-
-        System.out.println("입력받은 카테고리 코드: " + categoryCode);
+        List<String> menuName = menuService.findOneMenu(categoryCode);
+        model.addAttribute("menuName", menuName);
+        model.addAttribute("categoryCode", categoryCode);
 
         return "menu/menuCodeList";
     }

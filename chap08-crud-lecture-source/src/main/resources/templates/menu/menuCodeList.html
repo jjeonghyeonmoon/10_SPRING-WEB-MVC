@@ -6,12 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>카테고리 코드: <span th:text="${categoryCode}"></span></h1>
+    <h2>조회된 메뉴 리스트</h2>
 
-<h3>🍧카테고리 메뉴번호로 메뉴이름 찾기 폼 🍧</h3>
-<form action="/menu/menuCodeList">
-    <label>카테고리 코드 : <input type="number"></label><br>
-    <input type="submit" value="전송" name="category">
-</form>
-
+    <ul>
+        <li th:each="menuName : ${menuNames}" th:text="${menuName}"></li>
+    </ul>
 </body>
 </html>

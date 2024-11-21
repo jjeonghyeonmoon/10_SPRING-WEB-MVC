@@ -71,7 +71,7 @@
         FROM
             TBL_MENU
         WHERE
-            CATEGORY_CODE = ${CATEGORY_CODE}
+            CATEGORY_CODE = #{CATEGORY_CODE}
 
     </select>
 </mapper>

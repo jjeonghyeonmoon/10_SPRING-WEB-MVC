@@ -40,7 +40,9 @@ public class MenuService {
         menuMapper.registNewMenu(newMenu);
     }
 
-//    public List<String> findOneMenu(int categoryCode) {
-//        return menuMapper.findOneMenu(menuMapper.findOneMenu(""));
-//    }
+
+    // DAO 호출하여 데이터베이스에서 조회
+    public List<String> findOneMenu(int categoryCode) {
+        return menuMapper.findOneMenu(categoryCode);
+    }
 }
