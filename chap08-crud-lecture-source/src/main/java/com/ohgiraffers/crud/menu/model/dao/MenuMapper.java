@@ -2,6 +2,7 @@ package com.ohgiraffers.crud.menu.model.dao;
 
 import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
+import com.ohgiraffers.crud.menu.model.dto.OneCategoryCodeDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,4 +21,9 @@ public interface MenuMapper {
     List<CategoryDTO> findAllCategory();
 
     void registNewMenu(MenuDTO newMenu);
+
+//    List<OneCategoryCodeDTO> findOneMenu();
+
+
+    List<String>findOneMenu(int OneCategoryCode);
 }

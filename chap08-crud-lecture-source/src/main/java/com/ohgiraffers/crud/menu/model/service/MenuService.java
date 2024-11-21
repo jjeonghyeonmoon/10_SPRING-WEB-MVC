@@ -4,6 +4,7 @@ package com.ohgiraffers.crud.menu.model.service;
 import com.ohgiraffers.crud.menu.model.dao.MenuMapper;
 import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
+import com.ohgiraffers.crud.menu.model.dto.OneCategoryCodeDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,4 +39,8 @@ public class MenuService {
 
         menuMapper.registNewMenu(newMenu);
     }
+
+//    public List<String> findOneMenu(int categoryCode) {
+//        return menuMapper.findOneMenu(menuMapper.findOneMenu(""));
+//    }
 }

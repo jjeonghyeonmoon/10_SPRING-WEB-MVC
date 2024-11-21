@@ -18,6 +18,13 @@
         <result property="refCategoryCode" column="ref_category_code"/>
     </resultMap>
 
+    <resultMap id="CategoryCodeResultMap" type="com.ohgiraffers.crud.menu.model.dto.OneCategoryCodeDTO">
+        <id property="code" column="category_code"/>
+        <result property="name" column="category_name"/>
+        <result property="refCategoryCode" column="ref_category_code"/>
+    </resultMap>
+
+
     <select id="findAllMenus"  resultMap="menuResultMap">
         SELECT
             MENU_CODE,
@@ -57,4 +64,14 @@
             #{orderableStatus}
         )
     </insert>
+
+    <select id="findOneMenu"  resultMap="CategoryCodeResultMap">
+        SELECT
+            MENU_NAME
+        FROM
+            TBL_MENU
+        WHERE
+            CATEGORY_CODE = ${CATEGORY_CODE}
+
+    </select>
 </mapper>
