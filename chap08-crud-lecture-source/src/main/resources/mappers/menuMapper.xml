@@ -65,13 +65,48 @@
         )
     </insert>
 
-    <select id="findOneMenu"  resultMap="CategoryCodeResultMap">
+    <select id="findOneMenu" resultType="string">
         SELECT
             MENU_NAME
         FROM
             TBL_MENU
         WHERE
-            CATEGORY_CODE = #{CATEGORY_CODE}
+            CATEGORY_CODE = #{categoryCode}
 
     </select>
+
+    <resultMap id="joinResultMap" type="com.ohgiraffers.crud.menu.model.dto.MenuAndCategoryDTO">
+        <id property="code" column="menu_code"/>
+        <result property="name" column="menu_name"/>
+        <result property="price" column="menu_price"/>
+        <result property="orderableStatus" column="orderable_status"/>
+
+        <association property="categoryDTO" javaType="com.ohgiraffers.crud.menu.model.dto.CategoryDTO">
+            <id property="code" column="category_code"/>
+            <result property="name" column="category_name"/>
+            <result property="refCategoryCode" column="ref_category_code"/>
+        </association>
+    </resultMap>
+
+    <select id="findAllMenuAndCategory" resultMap="joinResultMap">
+        SELECT
+            a.menu_code,
+            a.menu_name,
+            a.menu_price,
+            a.orderable_status,
+            b.*
+        FROM
+            tbl_menu a
+        join
+            tbl_category b on (a.category_code = b.category_code)
+        WHERE
+            a.orderable_status = 'Y'
+    </select>
+
+    <delete id="deleteMenu" parameterType="int">
+    DELETE
+    FROM
+        TBL_MENU
+    WHERE MENU_CODE = #{menuCode}
+    </delete>
 </mapper>

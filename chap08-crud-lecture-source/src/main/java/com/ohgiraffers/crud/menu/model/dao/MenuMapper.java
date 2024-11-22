@@ -1,8 +1,8 @@
 package com.ohgiraffers.crud.menu.model.dao;
 
 import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
+import com.ohgiraffers.crud.menu.model.dto.MenuAndCategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
-import com.ohgiraffers.crud.menu.model.dto.OneCategoryCodeDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -25,9 +25,14 @@ public interface MenuMapper {
 //    List<OneCategoryCodeDTO> findOneMenu();
 
 
+    // SQL 실행 → 데이터베이스에서 결과 조회
+    List<String> findOneMenu(int CategoryCode);
 
-   // SQL 실행 → 데이터베이스에서 결과 조회
-    List<String>findOneMenu(int CategoryCode);
+
+    List<MenuAndCategoryDTO> findAllMenuAndCategory();
+
+
+    void deleteMenu(int menuCode);
 }
 
 

@@ -3,6 +3,7 @@ package com.ohgiraffers.crud.menu.model.service;
 
 import com.ohgiraffers.crud.menu.model.dao.MenuMapper;
 import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
+import com.ohgiraffers.crud.menu.model.dto.MenuAndCategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
 import com.ohgiraffers.crud.menu.model.dto.OneCategoryCodeDTO;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class MenuService {
     public MenuService(MenuMapper menuMapper) {
         this.menuMapper = menuMapper;
     }
+
+
+
 
     public List<MenuDTO> findAllMenu() {
         return menuMapper.findAllMenus();
@@ -44,5 +48,14 @@ public class MenuService {
     // DAO 호출하여 데이터베이스에서 조회
     public List<String> findOneMenu(int categoryCode) {
         return menuMapper.findOneMenu(categoryCode);
+    }
+
+    public List<MenuAndCategoryDTO> findAllMenuAndCategory() {
+        return menuMapper.findAllMenuAndCategory();
+    }
+
+
+    public void deleteMenu(int menuCode) {
+        menuMapper.deleteMenu(menuCode);
     }
 }
