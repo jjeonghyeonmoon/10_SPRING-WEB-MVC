@@ -158,4 +158,11 @@ public class MenuController {
 
     }
 
+    @GetMapping("showUpdate")
+    public String UpdateMenu(){
+        return "menu/showUpdate";
+    }
+
+
+
 }
