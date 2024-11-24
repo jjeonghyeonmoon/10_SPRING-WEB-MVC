@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<tr th:each="menu : ${menuList}">
+    <td th:text="${menu.code}"></td>
+    <td th:text="${menu.name}"></td>
+    <td th:text="${menu.price}"></td>
+    <td th:text="${menu.categoryCode}"></td>
+    <td th:text="${menu.orderableStatus}"></td>
+    <td>
+        <a th:href="'/menu/showUpdate?menuCode=' + ${menu.code}">수정</a> <!-- 수정 링크 -->
+    </td>
+</tr>
+
+</body>
+</html>

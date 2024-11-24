@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<h1>검색 결과</h1>
+<p>검색어: <span th:text="${keyword}"></span></p>
+
+<table border="1">
+    <tr>
+        <th>코드</th>
+        <th>이름</th>
+        <th>가격</th>
+        <th>카테고리</th>
+        <th>상태</th>
+    </tr>
+    <tr th:each="menu : ${menuList}">
+        <td th:text="${menu.code}"></td>
+        <td th:text="${menu.name}"></td>
+        <td th:text="${menu.price}"></td>
+        <td th:text="${menu.categoryCode}"></td>
+        <td th:text="${menu.orderableStatus}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

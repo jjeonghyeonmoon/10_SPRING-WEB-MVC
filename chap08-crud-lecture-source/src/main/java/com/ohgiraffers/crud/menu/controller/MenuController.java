@@ -157,12 +157,27 @@ public class MenuController {
         return "redirect:/menu/list";
 
     }
-
+    // 수정 페이지로 이동 (기존 데이터 표시)
     @GetMapping("showUpdate")
-    public String UpdateMenu(){
-        return "menu/showUpdate";
+    public String showUpdateForm(@RequestParam("menuCode") int menuCode, Model model) {
+        MenuDTO menu = menuService.findMenuByCode(menuCode); // 기존 데이터 조회
+        model.addAttribute("menu", menu); // 조회된 데이터 전달
+        return "menu/showUpdate"; // 수정 화면
     }
-
+    // 수정 처리
+    @PostMapping("menuList")
+    public String updateMenu(@ModelAttribute MenuDTO menuDTO, RedirectAttributes rttr) {
+        menuService.updateMenu(menuDTO); // 업데이 수행
+        rttr.addFlashAttribute("successMessage", menuDTO.getCode() + "번 메뉴가 수정되었습니다.");
+        return "redirect:/menu/list"; // 리스트 페이지로 리다이렉트
+    }
+    @GetMapping("search")
+    public String searchMenu(@RequestParam("keyword") String keyword, Model model) {
+        List<MenuDTO> menuList = menuService.findMenuByKeyword(keyword);
+        model.addAttribute("menuList", menuList);
+        model.addAttribute("keyword", keyword);
+        return "menu/searchResult"; // 검색 결과를 보여줄 화면
+    }
 
 
 }

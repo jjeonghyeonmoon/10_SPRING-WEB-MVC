@@ -33,6 +33,13 @@ public interface MenuMapper {
 
 
     void deleteMenu(int menuCode);
+
+    void updateMenu(MenuDTO menuDTO); // 업데이트 메서드
+
+    MenuDTO findMenuByCode(int menuCode);
+
+    List<MenuDTO> findMenuByKeyword(String keyword);
+
 }
 
 

@@ -55,7 +55,23 @@ public class MenuService {
     }
 
 
-    public void deleteMenu(int menuCode) {
+    public void deleteMenu(int menuCode)
+    {
         menuMapper.deleteMenu(menuCode);
     }
+
+    @Transactional
+    public void updateMenu(MenuDTO menuDTO) {
+        menuMapper.updateMenu(menuDTO); // DAO 호출하여 업데이트 수행
+    }
+
+    public MenuDTO findMenuByCode(int menuCode) {
+        // 기존 메뉴 정보를 조회해 화면에 전달
+        return menuMapper.findMenuByCode(menuCode);
+    }
+
+    public List<MenuDTO> findMenuByKeyword(String keyword) {
+        return menuMapper.findMenuByKeyword(keyword);
+    }
+
 }
