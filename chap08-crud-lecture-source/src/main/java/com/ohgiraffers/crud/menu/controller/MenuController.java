@@ -158,38 +158,10 @@ public class MenuController {
 
     }
 
-    @GetMapping("menuList")
-    public String findMenuListTwo(Model model) {
-        List<MenuDTO> menuList = menuService.findAllMenusTwo();
-        System.out.println("menuList: " + menuList); // 디버깅 로그 추가
-        model.addAttribute("menuList", menuList);
-        return "menu/menuList"; // 리스트 화면
-    }
-
-    @GetMapping("showUpdate")
-    public String showUpdateForm(@RequestParam("menuCode") int menuCode, Model model) {
-        MenuDTO menu = menuService.findMenuByCode(menuCode); // 수정 대상 조회
-        System.out.println("menu: " + menu); // 디버깅 로그 추가
-        model.addAttribute("menu", menu); // 수정 대상 데이터 전달
-        return "menu/showUpdate"; // 수정 페이지
-    }
-
-    @PostMapping("update")
-    public String updateMenu(@ModelAttribute MenuDTO menuDTO, RedirectAttributes rttr) {
-        menuService.updateMenu(menuDTO); // DB 업데이트
-        rttr.addFlashAttribute("successMessage", menuDTO.getCode() + "번 메뉴가 수정되었습니다.");
-        return "redirect:/menu/menuList"; // 수정 후 리스트 페이지로 리다이렉트
-    }
 
 
 
-    @GetMapping("search")
-    public String searchMenu(@RequestParam("keyword") String keyword, Model model) {
-        List<MenuDTO> menuList = menuService.findMenuByKeyword(keyword);
-        model.addAttribute("menuList", menuList);
-        model.addAttribute("keyword", keyword);
-        return "menu/searchResult";
-    }
+
 
 
 }
