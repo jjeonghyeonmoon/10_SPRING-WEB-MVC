@@ -55,7 +55,29 @@ public class MenuService {
     }
 
 
-    public void deleteMenu(int menuCode) {
+    public void deleteMenu(int menuCode)
+    {
         menuMapper.deleteMenu(menuCode);
     }
+
+
+    public MenuDTO findMenuByCode(int menuCode) {
+        return menuMapper.findMenuByCode(menuCode); // 특정 메뉴 조회
+    }
+
+    @Transactional
+    public void updateMenu(MenuDTO menuDTO) {
+        menuMapper.updateMenu(menuDTO); // 수정 로직
+    }
+    public List<MenuDTO> findAllMenusTwo() {
+        return menuMapper.findAllMenuTwo();
+    }
+
+
+    public List<MenuDTO> findMenuByKeyword(String keyword) {
+
+        return menuMapper.findMenuByKeyword(keyword);
+    }
+
+
 }
