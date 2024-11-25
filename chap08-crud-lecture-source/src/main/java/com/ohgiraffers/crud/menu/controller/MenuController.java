@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Locale;
 
@@ -158,10 +159,35 @@ public class MenuController {
 
     }
 
+    @GetMapping("showMenuList")
+    public String showList(Model model){
+
+          List<MenuDTO> menuList = menuService.getMenuList();
+          model.addAttribute("menuList", menuList);
+        return "menu/showMenuList";
+    }
+
+    @GetMapping("/menu/updateMenu/{menuCode}")
+    public String updateMenuForm(@PathVariable("menuCode") int menuCode, Model model) {
+
+        MenuDTO menu = menuService.findMenuByCode(menuCode);
+        model.addAttribute("menu", menu);
+        return "menu/updateMenu";
+    }
 
 
-
-
-
+    @PostMapping("/menu/updateMenu")
+    public String updateMenu(MenuDTO menuDTO) {
+        menuService.updateMenu(menuDTO);
+        return "redirect:/menu/showMenuList";
+    }
 
 }
+
+
+
+
+
+
+
+

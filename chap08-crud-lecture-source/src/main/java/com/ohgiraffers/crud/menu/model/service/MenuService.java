@@ -23,7 +23,8 @@ public class MenuService {
 
 
 
-    public List<MenuDTO> findAllMenu() {
+    public List<MenuDTO> findAllMenu()
+    {
         return menuMapper.findAllMenus();
     }
 
@@ -47,10 +48,12 @@ public class MenuService {
 
     // DAO 호출하여 데이터베이스에서 조회
     public List<String> findOneMenu(int categoryCode) {
+
         return menuMapper.findOneMenu(categoryCode);
     }
 
     public List<MenuAndCategoryDTO> findAllMenuAndCategory() {
+
         return menuMapper.findAllMenuAndCategory();
     }
 
@@ -61,9 +64,17 @@ public class MenuService {
     }
 
 
+    public List<MenuDTO> getMenuList() {
+        return menuMapper.getMenuList();
+    }
+    public MenuDTO findMenuByCode(int menuCode) {
 
+            return (MenuDTO) menuMapper.findOneMenuCode(menuCode); // Mapper를 통해 메뉴 조회
 
-
+    }
+    public void updateMenu(MenuDTO menuDTO) {
+        menuMapper.updateExistingMenu(menuDTO); // Mapper를 통해 데이터베이스 업데이트
+    }
 
 
 }

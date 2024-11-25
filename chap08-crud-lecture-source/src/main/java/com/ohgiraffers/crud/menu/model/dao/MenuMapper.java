@@ -28,12 +28,16 @@ public interface MenuMapper {
     // SQL 실행 → 데이터베이스에서 결과 조회
     List<String> findOneMenu(int CategoryCode);
 
-
+    //카테고리코드로 조회하기
     List<MenuAndCategoryDTO> findAllMenuAndCategory();
 
-
+    //삭제하기
     void deleteMenu(int menuCode);
 
+    //업데이트
+    List<MenuDTO> getMenuList();
+    void updateExistingMenu(MenuDTO menuDTO);
+    Object findOneMenuCode(int menuCode);
 }
 
 

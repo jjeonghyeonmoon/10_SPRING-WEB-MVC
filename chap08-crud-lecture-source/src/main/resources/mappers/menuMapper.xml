@@ -110,5 +110,45 @@
     WHERE MENU_CODE = #{menuCode}
     </delete>
 
+    <select id="getMenuList"  resultMap="menuResultMap">
+        SELECT
+            MENU_CODE,
+            MENU_NAME,
+            MENU_PRICE,
+            CATEGORY_CODE,
+            ORDERABLE_STATUS
+        FROM
+            TBL_MENU
+        WHERE
+            ORDERABLE_STATUS = 'Y'
+        ORDER BY
+            MENU_CODE
+    </select>
+
+    <select id="findOneMenuCode" parameterType="int" resultType="com.ohgiraffers.crud.menu.model.dto.MenuDTO">
+        SELECT
+        MENU_CODE,
+        MENU_NAME,
+        MENU_PRICE,
+        CATEGORY_CODE,
+        ORDERABLE_STATUS
+        FROM
+        TBL_MENU
+        WHERE
+        MENU_CODE = #{menuCode}
+    </select>
+
+    <update id="updateExistingMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO">
+        UPDATE TBL_MENU
+        SET
+        MENU_NAME = #{name},
+        MENU_PRICE = #{price},
+        CATEGORY_CODE = #{categoryCode},
+        ORDERABLE_STATUS = #{orderableStatus}
+        WHERE
+        MENU_CODE = #{code}
+    </update>
+
+
 
 </mapper>

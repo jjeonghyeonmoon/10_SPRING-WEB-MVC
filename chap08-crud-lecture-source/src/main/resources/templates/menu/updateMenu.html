@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Menu</title>
+</head>
+<body>
+<h2>메뉴 수정</h2>
+<form th:action="@{/menu/showMenuList}" th:object="${menu}" method="post">
+    <label>메뉴 코드: <span th:text="${menu.code}"></span></label>
+    <input type="hidden" th:field="*{code}" />
+    <br/>
+    <label>메뉴 이름: <input type="text" th:field="*{name}" /></label>
+    <br/>
+    <label>메뉴 가격: <input type="text" th:field="*{price}" /></label>
+    <br/>
+    <label>카테고리 코드: <input type="text" th:field="*{categoryCode}" /></label>
+    <br/>
+    <label>판매 상태: <input type="text" th:field="*{orderableStatus}" /></label>
+    <br/>
+    <button type="submit">수정</button>
+</form>
+</body>
+</html>
+
+</body>
+</html>
