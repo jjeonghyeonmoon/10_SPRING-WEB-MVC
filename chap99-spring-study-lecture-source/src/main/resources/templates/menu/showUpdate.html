@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>메뉴 수정</title>
+</head>
+<body>
+<h1>메뉴 수정</h1>
+<form action="/menu/showUpdate" method="POST">
+    <input type="hidden" name="code" th:value="${menu.code}">
+    <label>메뉴 이름: <input type="text" name="name" th:value="${menu.name}" required></label><br>
+    <label>메뉴 가격: <input type="number" name="price" value="[[${menu.price}]]" required></label><br>
+    <label>카테고리 코드: <input type="number" name="categoryCode" value="[[${menu.categoryCode}]]" required></label><br>
+    <label>판매 상태:
+        <select name="orderableStatus">
+            <option value="Y" th:selected="${menu.orderableStatus == 'Y'}">Y</option>
+            <option value="N" th:selected="${menu.orderableStatus == 'N'}">N</option>
+        </select>
+    </label><br>
+    <button type="submit">수정</button>
+</form>
+</body>
+</html>

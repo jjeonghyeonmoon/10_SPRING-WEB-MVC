@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 등록</title>
+</head>
+<body>
+<h1>메뉴 등록</h1>
+<form action="/menu/menuRegist" method="POST">
+    <label>메뉴 이름: <input type="text" name="name" required></label><br>
+    <label>메뉴 가격: <input type="number" name="price" required></label><br>
+    <label>카테고리 코드: <input type="number" name="categoryCode" required></label><br>
+    <label>판매 상태:
+        <select name="orderableStatus">
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+        </select>
+    </label><br>
+    <button type="submit">등록</button>
+</form>
+</body>
+</html>

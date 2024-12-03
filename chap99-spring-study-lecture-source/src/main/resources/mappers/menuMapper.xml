@@ -26,4 +26,52 @@
         ORDER BY
             MENU_CODE
     </select>
+
+    <insert id="registMenu" parameterType="com.ohgiraffers.springstudy.menu.model.dto.MenuDTO">
+            insert into TBL_MENU (MENU_CODE,MENU_NAME,MENU_PRICE,CATEGORY_CODE,ORDERABLE_STATUS)
+                        VALUES (#{code},#{name},#{price},#{categoryCode},#{orderableStatus})
+
+    </insert>
+
+        <!-- 1. 업데이트 -->
+    <select id="findAllMenus" resultMap="menuResultMap">
+        SELECT
+            MENU_CODE,
+            MENU_NAME,
+            MENU_PRICE,
+            CATEGORY_CODE,
+            ORDERABLE_STATUS
+        FROM
+            TBL_MENU
+        WHERE
+            ORDERABLE_STATUS = 'Y'
+        ORDER BY
+            MENU_CODE
+    </select>
+
+    <select id="findMenuByCode" parameterType="int" resultMap="menuResultMap">
+        SELECT
+        MENU_CODE,
+        MENU_NAME,
+        MENU_PRICE,
+        CATEGORY_CODE,
+        ORDERABLE_STATUS
+        FROM
+        TBL_MENU
+        WHERE
+        MENU_CODE = #{menuCode}
+    </select>
+
+    <!-- 3. 메뉴 수정 -->
+    <update id="updateMenu" parameterType="com.ohgiraffers.springstudy.menu.model.dto.MenuDTO">
+        UPDATE TBL_MENU
+        SET
+            MENU_NAME = #{name},
+            MENU_PRICE = #{price},
+            CATEGORY_CODE = #{categoryCode},
+            ORDERABLE_STATUS = #{orderableStatus}
+        WHERE
+            MENU_CODE = #{code}
+
+    </update>
 </mapper>

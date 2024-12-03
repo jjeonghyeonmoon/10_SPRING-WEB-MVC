@@ -10,8 +10,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -36,12 +36,48 @@ public class MenuController {
         List<MenuDTO> menuList = menuService.findAllMenu();
 
         model.addAttribute("menuList",menuList);
-        
-        for(MenuDTO menuDTO : menuList) {
-            System.out.println("menuDTO = " + menuDTO);
-        }
+
         return "menu/list";
 
+    }
+
+    @GetMapping("menuRegist")
+    public String showRegistPage(){
+        return "menu/menuRegist";
+    }
+
+    @PostMapping("menuRegist")
+    public String registMenu(@ModelAttribute MenuDTO menuDTO,RedirectAttributes rttr){
+            menuService.registMenu(menuDTO);
+        rttr.addFlashAttribute("successMessage","메뉴가 성공적으로 등록되었습니다.");
+
+        return "redirect:/menu/list";
+    }
+
+    // 1. 업데이트 전체조회
+    @GetMapping("menuList")
+    public String findAllList(Model model){
+        List<MenuDTO> menus = menuService.findAllMenus();
+
+        model.addAttribute("menuList", menus);
+
+        return "menu/menuList";
+    }
+
+    @GetMapping("showUpdate")
+    public String showUpdateForm(@RequestParam("menuCode") int menuCode,Model model){
+
+       MenuDTO menu = menuService.findMenuByCode(menuCode);
+        model.addAttribute("menu",menu);
+
+        return "menu/showUpdate";
+    }
+    // 3. 수정 처리
+    @PostMapping("showUpdate")
+    public String updateMenu(@ModelAttribute MenuDTO menuDTO, RedirectAttributes rttr) {
+        menuService.updateMenu(menuDTO);
+        rttr.addFlashAttribute("successMessage", menuDTO.getCode() + "번 메뉴가 수정되었습니다.");
+        return "redirect:/menu/menuList"; // 수정 후 리스트 화면으로 리다이렉트
     }
 
 }

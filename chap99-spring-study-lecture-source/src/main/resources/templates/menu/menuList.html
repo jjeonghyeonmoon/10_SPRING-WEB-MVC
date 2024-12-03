@@ -1,34 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>전체메뉴조회</title>
 </head>
 <body>
-<script>
-    const message = `[[${successMessage}]]`;
-    if(message){
-        alert(message);
-    }
-</script>
 <table border="1">
     <tr>
         <th>메뉴코드</th>
         <th>메뉴이름</th>
         <th>메뉴가격</th>
-        <th>카테고리코드</th>
-        <th>판매상태</th>
+        <th>카테고리 코드</th>
+        <th>판매 상태</th>
     </tr>
+
     <tr th:each="menu : ${menuList}">
         <td>
-            <a th:href="'/menu/updateMenu/' + ${menu.code}" th:text="${menu.code}"> </a>
+            <a th:href="@{/menu/showUpdate(menuCode=${menu.code})}" th:text="${menu.code}"></a> <!-- 수정된 부분 -->
         </td>
         <td th:text="${menu.name}"></td>
         <td th:text="${menu.price}"></td>
         <td th:text="${menu.categoryCode}"></td>
         <td th:text="${menu.orderableStatus}"></td>
-
     </tr>
 </table>
 </body>
