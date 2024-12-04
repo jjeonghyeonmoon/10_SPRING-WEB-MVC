@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.awt.*;
 import java.util.List;
 
 @Controller
@@ -79,5 +80,23 @@ public class MenuController {
         rttr.addFlashAttribute("successMessage", menuDTO.getCode() + "번 메뉴가 수정되었습니다.");
         return "redirect:/menu/menuList"; // 수정 후 리스트 화면으로 리다이렉트
     }
+
+    @GetMapping("deletePage")
+    public String showDeleteCode(Model model){
+        List<MenuDTO> menuList = menuService.findAllMenuDelete();
+        model.addAttribute("menuList",menuList);
+        return "menu/deletePage";
+    }
+
+
+    // 2. 메뉴 삭제 기능
+    @GetMapping("deleteMenu")
+    public String deleteMenu(@RequestParam("menuCode") int menuCode, RedirectAttributes rttr) {
+        menuService.deleteMenu(menuCode); // 삭제 수행
+        rttr.addFlashAttribute("successMessage", menuCode + "번 메뉴가 삭제되었습니다.");
+        return "redirect:/menu/deletePage"; // 삭제 후 전체 리스트로 리다이렉트
+    }
+
+
 
 }

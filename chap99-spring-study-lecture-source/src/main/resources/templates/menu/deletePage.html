@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>전체 메뉴 조회</title>
+</head>
+<body>
+<h1>전체 메뉴 리스트</h1>
+<table border="1">
+    <tr>
+        <th>메뉴코드</th>
+        <th>메뉴이름</th>
+        <th>메뉴가격</th>
+        <th>카테고리 코드</th>
+        <th>판매 상태</th>
+        <th>삭제</th>
+    </tr>
+    <tr th:each="menu : ${menuList}">
+        <td th:text="${menu.code}"></td>
+        <td th:text="${menu.name}"></td>
+        <td th:text="${menu.price}"></td>
+        <td th:text="${menu.categoryCode}"></td>
+        <td th:text="${menu.orderableStatus}"></td>
+        <td>
+            <a th:href="@{/menu/deleteMenu(menuCode=${menu.code})}">삭제</a> <!-- 삭제 요청 -->
+        </td>
+    </tr>
+</table>
+</body>
+</html>

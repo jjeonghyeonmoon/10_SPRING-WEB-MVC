@@ -16,4 +16,14 @@ public interface MenuMapper {
     MenuDTO findMenuByCode(int menuCode);
 
     void updateMenu(MenuDTO menuDTO);
+
+
+    
+
+    List<MenuDTO> findAllMenuDelete();
+
+
+    void deleteMenu(int code);
+
+
 }

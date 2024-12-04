@@ -34,10 +34,24 @@ public class MenuService {
     }
 
     public MenuDTO findMenuByCode(int menuCode) {
+
         return menuMapper.findMenuByCode(menuCode);
     }
 
     public void updateMenu(MenuDTO menuDTO) {
+
         menuMapper.updateMenu(menuDTO);
     }
+
+
+
+
+    public List<MenuDTO> findAllMenuDelete() {
+        return menuMapper.findAllMenuDelete();
+    }
+
+    public void deleteMenu(int code) {
+        menuMapper.deleteMenu(code); // 영향받은 행의 수를 확인할 필요가 없다면 반환값을 무시
+    }
+
 }

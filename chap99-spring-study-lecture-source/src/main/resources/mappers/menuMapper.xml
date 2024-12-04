@@ -28,8 +28,10 @@
     </select>
 
     <insert id="registMenu" parameterType="com.ohgiraffers.springstudy.menu.model.dto.MenuDTO">
-            insert into TBL_MENU (MENU_CODE,MENU_NAME,MENU_PRICE,CATEGORY_CODE,ORDERABLE_STATUS)
-                        VALUES (#{code},#{name},#{price},#{categoryCode},#{orderableStatus})
+            insert into TBL_MENU
+                            (MENU_CODE,MENU_NAME,MENU_PRICE,CATEGORY_CODE,ORDERABLE_STATUS)
+            VALUES
+                            (#{code},#{name},#{price},#{categoryCode},#{orderableStatus})
 
     </insert>
 
@@ -74,4 +76,31 @@
             MENU_CODE = #{code}
 
     </update>
+
+    <!-- 1. 삭제 1 -->
+    <select id="findAllMenuDelete" resultMap="menuResultMap">
+        SELECT
+        MENU_CODE,
+        MENU_NAME,
+        MENU_PRICE,
+        CATEGORY_CODE,
+        ORDERABLE_STATUS
+        FROM
+        TBL_MENU
+        WHERE
+        ORDERABLE_STATUS = 'Y'
+        ORDER BY
+        MENU_CODE
+    </select>
+
+
+
+    <delete id="deleteMenu" parameterType="int">
+            delete from
+                tbl_menu
+            where
+                MENU_CODE = #{code}
+    </delete>
+
+
 </mapper>
